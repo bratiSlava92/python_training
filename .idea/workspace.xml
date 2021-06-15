@@ -1,9 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="aec7b8f7-bb4c-4975-9a75-6bfea28edfc1" name="Default Changelist" comment="Созданы пакеты для разных зон ответственности">
+    <list default="true" id="aec7b8f7-bb4c-4975-9a75-6bfea28edfc1" name="Default Changelist" comment="Выделен класс для управления сессиями">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/fixture/application.py" beforeDir="false" afterPath="$PROJECT_DIR$/fixture/application.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/test/test_add_group.py" beforeDir="false" afterPath="$PROJECT_DIR$/test/test_add_group.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -166,7 +167,14 @@
       <option name="project" value="LOCAL" />
       <updated>1623793733008</updated>
     </task>
-    <option name="localTasksCounter" value="11" />
+    <task id="LOCAL-00011" summary="Выделен класс для управления сессиями">
+      <created>1623794647164</created>
+      <option name="number" value="00011" />
+      <option name="presentableId" value="LOCAL-00011" />
+      <option name="project" value="LOCAL" />
+      <updated>1623794647164</updated>
+    </task>
+    <option name="localTasksCounter" value="12" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -192,6 +200,7 @@
     <MESSAGE value="Выделен вспомогательный класс" />
     <MESSAGE value="Создана фикстура, тесты преведены на pytest" />
     <MESSAGE value="Созданы пакеты для разных зон ответственности" />
-    <option name="LAST_COMMIT_MESSAGE" value="Созданы пакеты для разных зон ответственности" />
+    <MESSAGE value="Выделен класс для управления сессиями" />
+    <option name="LAST_COMMIT_MESSAGE" value="Выделен класс для управления сессиями" />
   </component>
 </project>
