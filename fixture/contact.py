@@ -110,7 +110,6 @@ class ContactHelper:
 
     def modify_first_contact(self, contact):
         wd = self.app.wd
-        wd.find_element_by_name("selected[]").click()
         wd.find_element_by_xpath("(//img[@alt='Edit'])").click()
         # change contact information
         wd.find_element_by_name("firstname").click()
