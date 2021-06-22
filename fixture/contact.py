@@ -74,15 +74,20 @@ class ContactHelper:
 
     def delete_first_contact(self):
         wd = self.app.wd
-        self.app.open_home_page()
+        self.open_contact_page()
         wd.find_element_by_name("selected[]").click()
         wd.find_element_by_xpath("//input[@value='Delete']").click()
         wd.switch_to_alert().accept()
         self.return_to_main_page()
 
+    def open_contact_page(self):
+        wd = self.app.wd
+        if not (wd.current_url.endswith("/addressbook/") and len(wd.find_elements_by_name("add")) > 0):
+            self.app.open_home_page()
+
     def modify_contact(self, new_contact_data):
         wd = self.app.wd
-        self.app.open_home_page()
+        self.open_contact_page()
         wd.find_element_by_xpath("(//img[@alt='Edit'])").click()
         # fill group form
         self.fill_contact_form(new_contact_data)
@@ -92,5 +97,5 @@ class ContactHelper:
 
     def count(self):
         wd = self.app.wd
-        self.app.open_home_page()
+        self.open_contact_page()
         return len(wd.find_elements_by_name("selected[]"))
