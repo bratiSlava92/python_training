@@ -74,23 +74,54 @@ class ContactHelper:
         wd = self.app.wd
         wd.find_element_by_link_text("home").click()
 
+#    def delete_first_contact(self):
+#        wd = self.app.wd
+#        self.open_contact_page()
+#        wd.find_element_by_name("selected[]").click()
+#        wd.find_element_by_xpath("//input[@value='Delete']").click()
+#        wd.switch_to_alert().accept()
+#        self.return_to_main_page()
+#        self.contact_cache = None
+
     def delete_first_contact(self):
+        self.delete_contact_by_index(0)
+
+    def delete_contact_by_index(self, index):
         wd = self.app.wd
         self.open_contact_page()
-        wd.find_element_by_name("selected[]").click()
+        self.select_contact_by_index(index)
         wd.find_element_by_xpath("//input[@value='Delete']").click()
         wd.switch_to_alert().accept()
         self.return_to_main_page()
         self.contact_cache = None
+
+    def select_contact_by_index(self, index):
+            wd = self.app.wd
+            wd.find_elements_by_name("selected[]")[index].click()
 
     def open_contact_page(self):
         wd = self.app.wd
         if not (wd.current_url.endswith("/addressbook/") and len(wd.find_elements_by_name("add")) > 0):
             self.app.open_home_page()
 
-    def modify_contact(self, new_contact_data):
+#    def modify_contact(self, new_contact_data):
+#        wd = self.app.wd
+#        self.open_contact_page()
+#        wd.find_element_by_xpath("(//img[@alt='Edit'])").click()
+#        # fill group form
+#        self.fill_contact_form(new_contact_data)
+#        # submit modification
+#        wd.find_element_by_name("update").click()
+#        self.return_to_main_page()
+#        self.contact_cache = None
+
+    def modify_contact(self):
+        self.modify_contact_by_index(0)
+
+    def modify_contact_by_index(self, index, new_contact_data):
         wd = self.app.wd
         self.open_contact_page()
+        self.select_contact_by_index(index)
         wd.find_element_by_xpath("(//img[@alt='Edit'])").click()
         # fill group form
         self.fill_contact_form(new_contact_data)
