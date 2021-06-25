@@ -20,6 +20,7 @@ class ContactHelper:
         # submit new contact creation
         wd.find_element_by_xpath("(//input[@name='submit'])[2]").click()
         self.return_to_main_page()
+        self.contact_cache = None
 
     def fill_contact_form(self, contact):
         wd = self.app.wd
@@ -80,6 +81,7 @@ class ContactHelper:
         wd.find_element_by_xpath("//input[@value='Delete']").click()
         wd.switch_to_alert().accept()
         self.return_to_main_page()
+        self.contact_cache = None
 
     def open_contact_page(self):
         wd = self.app.wd
@@ -95,19 +97,23 @@ class ContactHelper:
         # submit modification
         wd.find_element_by_name("update").click()
         self.return_to_main_page()
+        self.contact_cache = None
 
     def count(self):
         wd = self.app.wd
         self.open_contact_page()
         return len(wd.find_elements_by_name("selected[]"))
 
+    contact_cache = None
+
     def get_contact_list(self):
-        wd = self.app.wd
-        self.open_contact_page()
-        contacts = []
-        for element in wd.find_elements_by_xpath("//tr[@name='entry']"):
-            id = element.find_element_by_name("selected[]").get_attribute("value")
-            lastname = element.find_element_by_xpath("//td[2]").text
-            firstname = element.find_element_by_xpath("//td[3]").text
-            contacts.append(Contact(id=id, lastname=lastname, firstname=firstname))
-        return contacts
+        if self.contact_cache is None:
+            wd = self.app.wd
+            self.open_contact_page()
+            self.contact_cache = []
+            for element in wd.find_elements_by_xpath("//tr[@name='entry']"):
+                id = element.find_element_by_name("selected[]").get_attribute("value")
+                lastname = element.find_element_by_xpath("//td[2]").text
+                firstname = element.find_element_by_xpath("//td[3]").text
+                self.contact_cache.append(Contact(id=id, lastname=lastname, firstname=firstname))
+        return self.contact_cache
