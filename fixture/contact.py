@@ -18,7 +18,7 @@ class ContactHelper:
         # fill new contact form
         self.fill_contact_form(contact)
         # submit new contact creation
-        wd.find_element_by_xpath("(//input[@name='submit'])[2]").click()
+        wd.find_element_by_xpath("(.//input[@name='submit'])[2]").click()
         self.return_to_main_page()
         self.contact_cache = None
 
@@ -54,14 +54,14 @@ class ContactHelper:
         if text is not None:
             wd.find_element_by_name(field_name).click()
             Select(wd.find_element_by_name(field_name)).select_by_visible_text(text)
-            wd.find_element_by_xpath("(//option[@value='" + text + "'])").click()
+            wd.find_element_by_xpath("(.//option[@value='" + text + "'])").click()
 
     def change_aday_amonth(self, field_name, text):
         wd = self.app.wd
         if text is not None:
             wd.find_element_by_name(field_name).click()
             Select(wd.find_element_by_name(field_name)).select_by_visible_text(text)
-            wd.find_element_by_xpath("(//option[@value='" + text + "'])[2]").click()
+            wd.find_element_by_xpath("(.//option[@value='" + text + "'])[2]").click()
 
     def change_field_value(self, field_name, text):
         wd = self.app.wd
@@ -78,7 +78,7 @@ class ContactHelper:
 #        wd = self.app.wd
 #        self.open_contact_page()
 #        wd.find_element_by_name("selected[]").click()
-#        wd.find_element_by_xpath("//input[@value='Delete']").click()
+#        wd.find_element_by_xpath(".//input[@value='Delete']").click()
 #        wd.switch_to_alert().accept()
 #        self.return_to_main_page()
 #        self.contact_cache = None
@@ -90,7 +90,7 @@ class ContactHelper:
         wd = self.app.wd
         self.open_contact_page()
         self.select_contact_by_index(index)
-        wd.find_element_by_xpath("//input[@value='Delete']").click()
+        wd.find_element_by_xpath(".//input[@value='Delete']").click()
         wd.switch_to_alert().accept()
         self.return_to_main_page()
         self.contact_cache = None
@@ -107,7 +107,7 @@ class ContactHelper:
 #    def modify_contact(self, new_contact_data):
 #        wd = self.app.wd
 #        self.open_contact_page()
-#        wd.find_element_by_xpath("(//img[@alt='Edit'])").click()
+#        wd.find_element_by_xpath("(.//img[@alt='Edit'])").click()
 #        # fill group form
 #        self.fill_contact_form(new_contact_data)
 #        # submit modification
@@ -122,7 +122,7 @@ class ContactHelper:
         wd = self.app.wd
         self.open_contact_page()
         self.select_contact_by_index(index)
-        wd.find_element_by_xpath("(//img[@alt='Edit'])").click()
+        wd.find_element_by_xpath("(.//img[@alt='Edit'])").click()
         # fill group form
         self.fill_contact_form(new_contact_data)
         # submit modification
@@ -142,9 +142,9 @@ class ContactHelper:
             wd = self.app.wd
             self.open_contact_page()
             self.contact_cache = []
-            for element in wd.find_elements_by_xpath("//tr[@name='entry']"):
+            for element in wd.find_elements_by_xpath(".//tr[@name='entry']"):
                 id = element.find_element_by_name("selected[]").get_attribute("value")
-                lastname = element.find_element_by_xpath("//td[2]").text
-                firstname = element.find_element_by_xpath("//td[3]").text
+                lastname = element.find_element_by_xpath(".//td[2]").text
+                firstname = element.find_element_by_xpath(".//td[3]").text
                 self.contact_cache.append(Contact(id=id, lastname=lastname, firstname=firstname))
         return self.contact_cache
