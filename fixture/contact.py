@@ -121,8 +121,7 @@ class ContactHelper:
     def modify_contact_by_index(self, index, new_contact_data):
         wd = self.app.wd
         self.open_contact_page()
-        self.select_contact_by_index(index)
-        wd.find_element_by_xpath("(.//img[@alt='Edit'])").click()
+        wd.find_elements_by_xpath(".//img[@alt='Edit']")[index].click()
         # fill group form
         self.fill_contact_form(new_contact_data)
         # submit modification

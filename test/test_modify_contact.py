@@ -13,7 +13,7 @@ def test_modify_main_contact_data(app):
                     ayear="2008", address2="address2", phone2="home123", notes="comment"))
     old_contacts = app.contact.get_contact_list()
     index = randrange(len(old_contacts))
-    contact = Contact(firstname="Имя", middlename="Отчество", lastname="Фамилия", address="изменен",
+    contact = Contact(firstname="Иван", middlename="Отчество", lastname="Иванов", address="изменен",
                                        mobile_phone="89998887766", email="test@mail.ru", bday="4", bmonth="April", byear="1990")
     contact.id = old_contacts[index].id
     app.contact.modify_contact_by_index(index, contact)
